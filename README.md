@@ -10,11 +10,11 @@ This is a React application that allows users to search for and view information
 
 ### Search Page
 
-[![screely-1692320222073.png](https://i.postimg.cc/L5qnhDDz/screely-1692320222073.png)](https://postimg.cc/8fS10hq5)
+[![azaz.png](https://i.postimg.cc/rpMQgZTq/azaz.png)](https://postimg.cc/yDpm8PWG)
 
 ### Detail Page
 
-[![screely-1692320335609.png](https://i.postimg.cc/QCRV77Yv/screely-1692320335609.png)](https://postimg.cc/V0WYQJ8F)
+[![aa1.png](https://i.postimg.cc/vm5wxNzM/aa1.png)](https://postimg.cc/GB35ZzVS)
 
 ## Features
 
