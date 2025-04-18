@@ -5,7 +5,6 @@ import { useState } from "react";
 import useDebounce from "../hooks/useDebounce";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import Loader from "../components/Loader";
 
 const baseUrl = "https://api.themoviedb.org/3";
 const apiKey = "6cd9178e895d7ed836f42e9744401070";
@@ -19,7 +18,7 @@ function SearchPage() {
   // useDebounce is custom hooks to delay fetching data
   const debounceSearch = useDebounce(search, 500);
   // Fetch data by query received from search input
-  const { data, isLoading } = useQuery({
+  const { data } = useQuery({
     //caching the data with this key and use it to render the search result
     queryKey: ["search", debounceSearch],
     queryFn: async () => {
@@ -38,13 +37,7 @@ function SearchPage() {
       {/* Show trending movies when no search is being performed */}
       {!debounceSearch && <TrendingMovies />}
       
-      {isLoading ? (
-        <div className="my-[10rem]">
-          <Loader />
-        </div>
-      ) : (
-        debounceSearch && <SearchList searchResult={data} />
-      )}
+      {debounceSearch && <SearchList searchResult={data} />}
     </main>
   );
 }
