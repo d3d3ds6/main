@@ -1,6 +1,5 @@
 import { useRef, useState } from "react";
 import { useGetTrendingMovies, TimeWindow } from "../hooks/useGetTrendingMovies";
-import Loader from "./Loader";
 import Movie from "./Movie";
 
 type Movie = {
@@ -12,7 +11,7 @@ type Movie = {
 
 function TrendingMovies() {
   const [timeWindow, setTimeWindow] = useState<TimeWindow>("day");
-  const { data, isLoading } = useGetTrendingMovies(timeWindow);
+  const { data } = useGetTrendingMovies(timeWindow);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
 
   const scrollLeft = () => {

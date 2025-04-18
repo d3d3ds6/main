@@ -1,8 +1,9 @@
-import { describe, expect, it, test } from "vitest";
-import { render, screen, waitFor, getByText } from "@testing-library/react";
+import { describe, expect, it } from "vitest";
+import { render, screen, waitFor } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import App from "./App";
+import "@testing-library/jest-dom"; // Add this import
 
 const queryClient = new QueryClient();
 
@@ -19,7 +20,7 @@ describe("App", () => {
         expect(screen.getByTestId("navigation")).toBeInTheDocument();
     });
 
-    it("renders home page", () => {
+    it("renders home page and shows movie categories", async () => {
         render(
             <QueryClientProvider client={queryClient}>
                 <MemoryRouter initialEntries={["/"]}>
@@ -27,16 +28,13 @@ describe("App", () => {
                 </MemoryRouter>
             </QueryClientProvider>
         );
-        test("movie category title appears", async () => {
-            // element is initially not present...
-
-            // wait for appearance inside an assertion
-            await waitFor(() => {
-                expect(getByText("popular")).toBeInTheDocument();
-                expect(getByText("upcoming")).toBeInTheDocument();
-                expect(getByText("now playing")).toBeInTheDocument();
-                expect(getByText("top_rated")).toBeInTheDocument();
-            });
+        
+        // Wait for appearance inside an assertion
+        await waitFor(() => {
+            expect(screen.getByText("popular")).toBeInTheDocument();
+            expect(screen.getByText("upcoming")).toBeInTheDocument();
+            expect(screen.getByText("now playing")).toBeInTheDocument();
+            expect(screen.getByText("top_rated")).toBeInTheDocument();
         });
     });
 });
